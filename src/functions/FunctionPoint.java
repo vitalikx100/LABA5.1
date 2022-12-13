@@ -3,7 +3,7 @@ package functions;
 import java.io.Serializable;
 import java.util.Objects;
 
-public class FunctionPoint implements Serializable {
+public class FunctionPoint implements Serializable, Cloneable {
     public double x,y;
 
     public FunctionPoint(double x, double y) {
@@ -51,6 +51,7 @@ public class FunctionPoint implements Serializable {
         return super.clone();
     }
 }
+
 
 
 

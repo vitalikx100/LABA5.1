@@ -4,7 +4,7 @@ import java.io.Serializable;
 import java.util.Objects;
 import java.util.Arrays;
 
-public class ArrayTabulatedFunction implements Serializable, TabulatedFunction, Function{
+public class ArrayTabulatedFunction implements Serializable, TabulatedFunction, Function, Cloneable{
     private FunctionPoint[] MassOfValues;
     private int NumberOfPoints;
 
@@ -14,7 +14,7 @@ public class ArrayTabulatedFunction implements Serializable, TabulatedFunction, 
         this.NumberOfPoints=NumberOfPoints;
         this.MassOfValues = new FunctionPoint[NumberOfPoints];
         for (int i = 0; i < NumberOfPoints; ++i) {
-           MassOfValues[i]=points[i];
+            MassOfValues[i]=points[i];
         }
     }
 
@@ -189,14 +189,20 @@ public class ArrayTabulatedFunction implements Serializable, TabulatedFunction, 
     }
 
     public int hashCode(){
-       int res= NumberOfPoints;
-       for (int i=0;i<NumberOfPoints;++i){
-           res^=MassOfValues[i].hashCode()*31;
-       }
-       return res;
+        int res = NumberOfPoints;
+        for (int i=0;i<NumberOfPoints;++i){
+            res^=MassOfValues[i].hashCode()*i;
+        }
+        return res;
     }
 
-    protected Object clone() throws CloneNotSupportedException {
+    public Object clone() throws CloneNotSupportedException {
+        //return super.clone();
+        int size=this.getNumberOfPoints();
+        FunctionPoint[] a=new FunctionPoint[this.getNumberOfPoints()];
+        for(int i=0;i<size;i++){
+            a[i]=new FunctionPoint(this.getPoint(i));
+        }
         return super.clone();
     }
 
@@ -209,6 +215,7 @@ public class ArrayTabulatedFunction implements Serializable, TabulatedFunction, 
 
 
 }
+
 
 
 

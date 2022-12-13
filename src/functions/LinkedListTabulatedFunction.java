@@ -2,7 +2,7 @@ package functions;
 
 import java.util.Objects;
 
-public class LinkedListTabulatedFunction implements TabulatedFunction, Function {
+public class LinkedListTabulatedFunction implements TabulatedFunction, Function, Cloneable {
 
     private static class FunctionNode {
         private FunctionPoint point;
@@ -298,7 +298,7 @@ public class LinkedListTabulatedFunction implements TabulatedFunction, Function 
         return res;
     }
 
-    protected Object clone() throws CloneNotSupportedException {
+    public Object clone() throws CloneNotSupportedException {
         int size = this.getNumberOfPoints();
         FunctionPoint[] f = new FunctionPoint[this.getNumberOfPoints()];
         for (int i = 0; i < size; ++i) {
@@ -320,5 +320,6 @@ public class LinkedListTabulatedFunction implements TabulatedFunction, Function 
     }
 
 }
+
 
 
